@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
-
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="robot_wheel" params="wheel_prefix *joint_pose">
+  <xacro:macro name="guardian_wheel" params="wheel_prefix *joint_pose">
     <link name="${wheel_prefix}_wheel">
       <inertial>
         <mass value="2.637" />
@@ -11,7 +10,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://guardian_description/meshes/wheel.dae" />
+          <mesh filename="package://guardian_description/meshes/wheel.dae" scale="0.4 0.4 0.4"/>
         </geometry>
       </visual>
       <collision>

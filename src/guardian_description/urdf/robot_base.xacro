@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Args -->
   <xacro:arg name="robot_namespace" default="/" />
 
   <!-- Constants -->
@@ -8,34 +9,35 @@
   <!-- Included URDF/XACRO Files -->
   <xacro:include filename="$(find guardian_description)/urdf/wheel.xacro" />
 
-  <xacro:macro name="robot" params="prefix">
+  <xacro:macro name="guardian_base" params="prefix">
 
     <!-- Base Size -->
-    <xacro:property name="base_x_size" value="0.98740000" />
-    <xacro:property name="base_y_size" value="0.57090000" />
-    <xacro:property name="base_z_size" value="0.24750000" />
+    <xacro:property name="base_x_size" value="0.500" />
+    <xacro:property name="base_y_size" value="0.300" />
+    <xacro:property name="base_z_size" value="0.100" />
 
     <!-- Wheel Mounting Positions -->
-    <xacro:property name="wheelbase" value="0.5120" />
-    <xacro:property name="track" value="0.5708" />
-    <xacro:property name="wheel_vertical_offset" value="0.03282" />
+
+    <xacro:property name="wheelbase" value="0.400" />             <!-- x - Forward -->
+    <xacro:property name="track" value="0.350" />                 <!-- y - Side -->
+    <xacro:property name="wheel_vertical_offset" value="0.03" />
 
     <!-- Wheel Properties -->
-    <xacro:property name="wheel_length" value="0.1143" />
-    <xacro:property name="wheel_radius" value="0.1651" />
+    <xacro:property name="wheel_length" value="0.05" />
+    <xacro:property name="wheel_radius" value="0.05" />
 
     <!-- Base link is the center of the robot's bottom plate -->
     <link name="${prefix}base_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 0 ${base_z_size*3/4-0.01}" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://guardian_description/meshes/base_link.dae" />
+          <box size="${base_x_size} ${base_y_size} ${base_z_size/2-0.02}"/>
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 ${base_z_size*3/4-0.01}" rpy="0 0 0" />
         <geometry>
-          <box size="${base_x_size*4/5} ${base_y_size} ${base_z_size/2-0.02}"/>
+          <box size="${base_x_size} ${base_y_size} ${base_z_size/2-0.02}"/>
         </geometry>
       </collision>
     </link>
@@ -65,18 +67,18 @@
     </joint>
 
     <!-- Robot wheel macros -->
-    <xacro:robot_wheel wheel_prefix="${prefix}front_left">
+    <xacro:guardian_wheel wheel_prefix="${prefix}front_left">
       <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
-    </xacro:robot_wheel>
-    <xacro:robot_wheel wheel_prefix="${prefix}front_right">
+    </xacro:guardian_wheel>
+    <xacro:guardian_wheel wheel_prefix="${prefix}front_right">
       <origin xyz="${wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
-    </xacro:robot_wheel>
-    <xacro:robot_wheel wheel_prefix="${prefix}rear_left">
+    </xacro:guardian_wheel>
+    <xacro:guardian_wheel wheel_prefix="${prefix}rear_left">
       <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
-    </xacro:robot_wheel>
-    <xacro:robot_wheel wheel_prefix="${prefix}rear_right">
+    </xacro:guardian_wheel>
+    <xacro:guardian_wheel wheel_prefix="${prefix}rear_right">
       <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
-    </xacro:robot_wheel>
+    </xacro:guardian_wheel>
 
   </xacro:macro>
 

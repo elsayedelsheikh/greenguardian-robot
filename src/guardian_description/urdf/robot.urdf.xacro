@@ -1,22 +1,21 @@
 <?xml version="1.0"?>
-
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="greenguardian">
-
   <!-- paramters to be set from the launch file -->
   <xacro:arg name="prefix" default="" />
   <xacro:arg name="sim_gazebo_classic" default="false" />
   <xacro:arg name="simulation_controllers" default="" />
 
-  <xacro:include filename="$(find guardian_description)/urdf/robot_core.xacro" />
+  <!-- Included URDF/XACRO Files -->
+  <xacro:include filename="$(find guardian_description)/urdf/robot_base.xacro"/>
+  <xacro:include filename="$(find guardian_description)/urdf/ros2_control.xacro"/>
 
-  <!-- Load husky description -->
-  <xacro:robot prefix="$(arg prefix)" />
-  <xacro:robot_ros2_control
+  <!-- Load Base -->
+  <xacro:guardian_base prefix="$(arg prefix)"/>
+  <xacro:guardian_base_ros2_control
     prefix="$(arg prefix)"
     sim_gazebo_classic="$(arg sim_gazebo_classic)"/>
 
   <xacro:if value="$(arg sim_gazebo_classic)">
-    <xacro:include filename="$(find levibot_skidsteer)/urdf/levibot.gazebo.xacro"/>
     <gazebo>
       <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
         <parameters>$(arg simulation_controllers)</parameters>
