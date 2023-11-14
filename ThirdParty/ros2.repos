@@ -1,0 +1,14 @@
+# List of repositories to use within your workspace
+# See https://github.com/dirk-thomas/vcstool
+
+repositories:
+  examples:
+    type: git
+    url: https://github.com/husky/husky.git
+    version: humble-devel
+
+repositories:
+  examples:
+    type: git
+    url: https://github.com/elsayedelsheikh/levibot_skidsteer.git
+    version: main
