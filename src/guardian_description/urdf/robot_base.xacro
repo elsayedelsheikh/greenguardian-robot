@@ -29,13 +29,13 @@
     <!-- Base link is the center of the robot's bottom plate -->
     <link name="${prefix}base_link">
       <visual>
-        <origin xyz="0 0 ${base_z_size*3/4-0.01}" rpy="0 0 0" />
+        <origin xyz="0 0 ${base_z_size*2/4-0.01}" rpy="0 0 0" />
         <geometry>
           <box size="${base_x_size} ${base_y_size} ${base_z_size/2-0.02}"/>
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 0 ${base_z_size*3/4-0.01}" rpy="0 0 0" />
+        <origin xyz="0 0 ${base_z_size*2/4-0.01}" rpy="0 0 0" />
         <geometry>
           <box size="${base_x_size} ${base_y_size} ${base_z_size/2-0.02}"/>
         </geometry>

@@ -1,16 +1,18 @@
 # $LICENSE$
-from os import environ
-from ament_index_python.packages import get_package_prefix
+import os
+from pathlib import Path
+from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
     IncludeLaunchDescription,
     RegisterEventHandler,
     TimerAction,
+    SetEnvironmentVariable
 )
 from launch.event_handlers import OnProcessExit, OnProcessStart
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution, TextSubstitution
+from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution, EnvironmentVariable
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
@@ -21,7 +23,7 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "runtime_config_package",
-            default_value="guardian_description",
+            default_value="guardian_simulation",
             description='Package with the controller\'s configuration in "config" folder. \
         Usually the argument is not set, it enables use of a custom setup.',
         )
@@ -29,7 +31,7 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "controllers_file",
-            default_value="gz_controllers.yaml",
+            default_value="controllers.yaml",
             description="YAML file with the controllers configuration.",
         )
     )
@@ -64,12 +66,14 @@ def generate_launch_description():
     description_file = LaunchConfiguration("description_file")
     robot_controller = LaunchConfiguration("robot_controller")
 
-
+    world_path = ""
+    # "world": get_package_share_directory('guardian_simulation') + "/worlds/guardian.world",
+    
     robot_controllers = PathJoinSubstitution(
         [FindPackageShare(runtime_config_package), "config", controllers_file]
     )
     rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare(description_package), "rviz", "robot.rviz"]
+        [FindPackageShare(description_package), "rviz", "view_robot.rviz"]
     )
 
     robot_description_content = Command(
@@ -104,18 +108,19 @@ def generate_launch_description():
     )
 
     # Gazebo nodes
-    if '$GAZEBO_MODEL_PATH' in environ:
-        environ['$GAZEBO_MODEL_PATH'] =  environ['$GAZEBO_MODEL_PATH'] + ':' + get_package_prefix('guardian_simulation') + '/share/guardian_simulation/models'
-    else:
-        environ['$GAZEBO_MODEL_PATH'] =  get_package_prefix('guardian_simulation') + "/share/guardian_simulation/models"
-
+    gazebo_resources_path = SetEnvironmentVariable(name='GAZEBO_MODEL_PATH', value=[
+                                                    EnvironmentVariable('GAZEBO_MODEL_PATH',
+                                                                        default_value=''),
+                                                    '/usr/share/gazebo-11/models/:',
+                                                    str(Path(get_package_share_directory("guardian_description")).
+                                                        parent.resolve())])
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [FindPackageShare("gazebo_ros"), "/launch", "/gazebo.launch.py"]
         ),
-        # launch_arguments={
-        #     "world": get_package_prefix('guardian_description') + "/share/guardian_description/worlds/levibot_world_classic.world",
-        # }.items(),
+        launch_arguments={
+            "world": world_path,
+        }.items(),
     )
 
     # Spawn robot
@@ -181,6 +186,7 @@ def generate_launch_description():
     return LaunchDescription(
         declared_arguments
         + [
+            gazebo_resources_path,
             gazebo,
             gazebo_spawn_robot,
             robot_state_pub_node,
