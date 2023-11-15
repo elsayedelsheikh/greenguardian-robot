@@ -5,7 +5,7 @@
                prefix
                sim_gazebo_classic:=^|false"
   >
-    <ros2_control name="${prefix}bot_ros2control" type="system">
+    <ros2_control name="${prefix}base_ros2control" type="system">
         <hardware>
           <xacro:if value="$(arg sim_gazebo_classic)">
             <plugin>gazebo_ros2_control/GazeboSystem</plugin>

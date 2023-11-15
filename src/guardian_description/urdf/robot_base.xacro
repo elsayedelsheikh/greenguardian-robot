@@ -18,8 +18,8 @@
 
     <!-- Wheel Mounting Positions -->
 
-    <xacro:property name="wheelbase" value="0.400" />             <!-- x - Forward -->
-    <xacro:property name="track" value="0.350" />                 <!-- y - Side -->
+    <xacro:property name="wheelbase" value="0.400" />             <!-- the distance between the front and rear axles -->
+    <xacro:property name="track" value="0.350" />                 <!-- the distance between the left and right wheels -->
     <xacro:property name="wheel_vertical_offset" value="0.03" />
 
     <!-- Wheel Properties -->
