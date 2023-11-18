@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!-- ============= Materials & Intertias =============  -->
+  <xacro:include filename="$(find guardian_description)/urdf/utils/inertial_macros.xacro"/>
+  <xacro:include filename="$(find guardian_description)/urdf/utils/materials_macros.xacro"/>
+
+  <xacro:macro name="create_link" params="
+        link_name
+        color
+        xyz_offset
+        rpy_offset
+        x y z">
+    <link name="${link_name}">
+      <visual>
+        <origin xyz="${xyz_offset}" rpy="${rpy_offset}"/>
+        <geometry>
+          <box size="${x} ${y} ${z}"/>
+        </geometry>
+        <material name="${color}"/>
+      </visual>
+      <collision>
+        <origin xyz="${xyz_offset}" rpy="${rpy_offset}"/>
+        <geometry>
+          <box size="${x} ${y} ${z}"/>
+        </geometry>
+      </collision>
+      <xacro:inertial_box mass="1.0" x="${x}" y="${y}" z="${z}">
+        <origin xyz="${xyz_offset}" rpy="${rpy_offset}"/>
+      </xacro:inertial_box>
+    </link>
+  </xacro:macro>
+</robot>
