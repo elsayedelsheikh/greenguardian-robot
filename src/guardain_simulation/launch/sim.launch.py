@@ -129,7 +129,7 @@ def generate_launch_description():
     gazebo_spawn_robot = Node(
         package="gazebo_ros",
         executable="spawn_entity.py",
-        name="spawn_levibot",
+        name="spawn_guardian",
         arguments=["-entity", "greenguardian", "-topic", "robot_description", "-x", "0.0", "-y", "0.0", "-z", "1.0"],
         output="screen",
     )
