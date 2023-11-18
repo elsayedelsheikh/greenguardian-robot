@@ -7,7 +7,7 @@
 
   <!-- Included URDF/XACRO Files -->
   <xacro:include filename="$(find guardian_description)/urdf/robot_base.xacro"/>
-  <xacro:include filename="$(find guardian_description)/urdf/ros2_control.xacro"/>
+  <xacro:include filename="$(find guardian_description)/ros2_control/base.ros2_control.xacro"/>
 
   <!-- Load Base -->
   <xacro:guardian_base prefix="$(arg prefix)"/>
@@ -25,5 +25,7 @@
       </plugin>
     </gazebo>
   </xacro:if>
+
+  <!-- Load Manipulator -->
 
 </robot>

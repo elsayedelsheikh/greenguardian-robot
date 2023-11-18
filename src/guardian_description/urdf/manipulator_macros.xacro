@@ -1,14 +1,13 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="manipulator_description">
+  <xacro:macro name="manipulator_description" params="
+               lower_joint_limit:=^|${-pi/2}
+               upper_joint_limit:=^|${pi/2}"
+  >
 
   <!-- helper macro -->
   <xacro:include filename="$(find guardian_description)/urdf/utils/create_link.xacro"/>
-
-  <!-- Joints Limits -->
-  <xacro:property name="lower_limit" value="${-pi/2}" />
-  <xacro:property name="upper_limit" value="${pi/2}" />
 
   <!-- Links -->
   <xacro:property name="link0_len" value="0.0793" />
@@ -91,7 +90,7 @@
     <child link="link_1"/>
     <origin xyz="0 0 ${link0_len}" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="${lower_limit}" upper="${upper_limit}" velocity="2.5"/>
+    <limit effort="1000.0" lower="${lower_joint_limit}" upper="${upper_joint_limit}" velocity="2.5"/>
   </joint>
 
   <joint name="joint_2" type="revolute">
@@ -99,7 +98,7 @@
     <child link="link_2"/>
     <origin xyz="0 0 ${link1_len}" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="${lower_limit}" upper="${upper_limit}" velocity="2.5"/>
+    <limit effort="1000.0" lower="${lower_joint_limit}" upper="${upper_joint_limit}" velocity="2.5"/>
   </joint>
 
   <joint name="joint_3" type="revolute">
@@ -107,7 +106,7 @@
     <child link="link_3"/>
     <origin xyz="0 0 ${link2_len}" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="${lower_limit}" upper="${upper_limit}" velocity="2.5"/>
+    <limit effort="1000.0" lower="${lower_joint_limit}" upper="${upper_joint_limit}" velocity="2.5"/>
   </joint>
 
   <joint name="joint_4" type="revolute">
@@ -115,7 +114,7 @@
     <child link="link_4"/>
     <origin xyz="0 0 ${link3_len}" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="${lower_limit}" upper="${upper_limit}" velocity="2.5"/>
+    <limit effort="1000.0" lower="${lower_joint_limit}" upper="${upper_joint_limit}" velocity="2.5"/>
   </joint>
 
   <joint name="joint_5" type="revolute">
@@ -123,7 +122,7 @@
     <child link="link_5"/>
     <origin xyz="0 0 ${link4_len}" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="${lower_limit}" upper="${upper_limit}" velocity="2.5"/>
+    <limit effort="1000.0" lower="${lower_joint_limit}" upper="${upper_joint_limit}" velocity="2.5"/>
   </joint>
 
 </xacro:macro>

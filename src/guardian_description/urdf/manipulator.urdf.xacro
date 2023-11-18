@@ -1,15 +1,34 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://wiki.ros.org/xacro" name="r6bot">
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="guardian_manipulator">
+  <!-- paramters to be set from the launch file -->
+  <xacro:arg name="lower_limit" default="${str(-pi/2)}"/>
+  <xacro:arg name="upper_limit" default="${str(pi/2)}"/>
+  <xacro:arg name="sim_gazebo_classic" default="false"/>
+  <xacro:arg name="simulation_controllers" default=""/>
 
   <!-- Import r6bot macro -->
   <xacro:include filename="$(find guardian_description)/urdf/manipulator_macros.xacro"/>
 
   <!-- create link fixed to the "world" -->
   <link name="world"/>
-  <xacro:manipulator_description/>
+  <xacro:manipulator_description
+    lower_joint_limit="$(arg lower_limit)"
+    upper_joint_limit="$(arg upper_limit)"/>
 
-  <!-- Import r6bot ros2_control description -->
-  <!-- <xacro:include filename="$(find ros2_control_demo_example_7)/ros2_control/r6bot.ros2_control.xacro" />
-  <xacro:r6bot_ros2_control name="r6bot"/> -->
+  <!-- ros2_control -->
+  <xacro:include filename="$(find guardian_description)/ros2_control/manipulator.ros2_control.xacro"/>
+  
+  <xacro:guardian_manipulator_ros2_control
+    lower_joint_limit="$(arg lower_limit)"
+    upper_joint_limit="$(arg upper_limit)"
+    sim_gazebo_classic="$(arg sim_gazebo_classic)"/>
+
+  <xacro:if value="$(arg sim_gazebo_classic)">
+    <gazebo>
+      <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+        <parameters>$(arg simulation_controllers)</parameters>
+      </plugin>
+    </gazebo>
+  </xacro:if>
 
 </robot>

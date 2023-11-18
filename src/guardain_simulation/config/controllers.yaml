@@ -9,6 +9,12 @@ controller_manager:
     base_controller:
       type: diff_drive_controller/DiffDriveController
 
+    manipulator_forward_position_controller:
+      type: forward_command_controller/ForwardCommandController
+
+    manipulator_joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
 base_controller:
   ros__parameters:
     left_wheel_names: ["front_left_wheel_joint", "rear_left_wheel_joint"]
@@ -65,3 +71,30 @@ base_controller:
     angular.z.min_acceleration: -1.0
     angular.z.max_jerk: 0.0
     angular.z.min_jerk: 0.0
+
+manipulator_forward_position_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+      - joint_5
+    interface_name: position
+
+manipulator_joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+      - joint_5
+
+    command_interfaces:
+      - position
+      - velocity
+
+    state_interfaces:
+      - position
+      - velocity

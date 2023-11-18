@@ -11,7 +11,7 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 install(DIRECTORY
-  launch urdf meshes rviz
+  launch urdf meshes rviz ros2_control
   DESTINATION share/${PROJECT_NAME}
 )
 
