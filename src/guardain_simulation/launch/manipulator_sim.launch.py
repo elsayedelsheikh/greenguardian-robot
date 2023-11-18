@@ -46,14 +46,14 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "description_file",
-            default_value="manipulator.urdf.xacro",
+            default_value="robot.urdf.xacro",
             description="URDF/XACRO description file with the robot.",
         )
     )
     declared_arguments.append(
         DeclareLaunchArgument(
             "robot_controller",
-            default_value="manipulator_forward_position_controller",
+            default_value="manipulator_joint_trajectory_controller",
             choices=["manipulator_forward_position_controller","manipulator_joint_trajectory_controller"],
             description="Robot controller to start.",
         )
@@ -73,7 +73,7 @@ def generate_launch_description():
         [FindPackageShare(runtime_config_package), "config", controllers_file]
     )
     rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare(description_package), "rviz", "view_robot.rviz"]
+        [FindPackageShare(description_package), "rviz", "manipulator.rviz"]
     )
 
     robot_description_content = Command(
@@ -83,6 +83,8 @@ def generate_launch_description():
             PathJoinSubstitution(
                 [FindPackageShare(description_package), "urdf", description_file]
             ),
+            " ",
+            "use_robot_base:=false",
             " ",
             "sim_gazebo_classic:=true",
             " ",
@@ -127,8 +129,8 @@ def generate_launch_description():
     gazebo_spawn_robot = Node(
         package="gazebo_ros",
         executable="spawn_entity.py",
-        name="spawn_levibot",
-        arguments=["-entity", "greenguardian", "-topic", "robot_description"],
+        name="spawn_manipulator",
+        arguments=["-entity", "greenguardian_manipulator", "-topic", "robot_description"],
         output="screen",
     )
 

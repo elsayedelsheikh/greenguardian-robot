@@ -53,8 +53,8 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "robot_controller",
-            default_value="base_controller",
-            choices=["base_controller"],
+            default_value="manipulator_joint_trajectory_controller",
+            choices=["manipulator_forward_position_controller","manipulator_joint_trajectory_controller"],
             description="Robot controller to start.",
         )
     )
@@ -83,6 +83,8 @@ def generate_launch_description():
             PathJoinSubstitution(
                 [FindPackageShare(description_package), "urdf", description_file]
             ),
+            " ",
+            "use_robot_base:=true",
             " ",
             "sim_gazebo_classic:=true",
             " ",
@@ -139,7 +141,7 @@ def generate_launch_description():
         arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
     )
 
-    robot_controllers = [robot_controller]
+    robot_controllers = [robot_controller, "base_controller"]
     robot_controller_spawners = []
     for controller in robot_controllers:
         robot_controller_spawners += [

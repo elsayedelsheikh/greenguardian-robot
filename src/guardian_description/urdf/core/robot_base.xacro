@@ -7,7 +7,7 @@
   <xacro:property name="M_PI" value="3.14159"/>
 
   <!-- Included URDF/XACRO Files -->
-  <xacro:include filename="$(find guardian_description)/urdf/wheel.xacro" />
+  <xacro:include filename="$(find guardian_description)/urdf/core/wheel.xacro" />
 
   <xacro:macro name="guardian_base" params="prefix">
 

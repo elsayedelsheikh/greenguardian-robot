@@ -2,30 +2,57 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="greenguardian">
   <!-- paramters to be set from the launch file -->
   <xacro:arg name="prefix" default="" />
+  <xacro:arg name="use_robot_base" default="true" />
   <xacro:arg name="sim_gazebo_classic" default="false" />
   <xacro:arg name="simulation_controllers" default="" />
 
-  <!-- Included URDF/XACRO Files -->
-  <xacro:include filename="$(find guardian_description)/urdf/robot_base.xacro"/>
-  <xacro:include filename="$(find guardian_description)/ros2_control/base.ros2_control.xacro"/>
+  <!--Manipulator Args -->
+  <xacro:arg name="lower_limit" default="${str(-pi/2)}"/>
+  <xacro:arg name="upper_limit" default="${str(pi/2)}"/>
 
-  <!-- Load Base -->
-  <xacro:guardian_base prefix="$(arg prefix)"/>
-  <xacro:guardian_base_ros2_control
-    prefix="$(arg prefix)"
-    sim_gazebo_classic="$(arg sim_gazebo_classic)"/>
-
-  <xacro:if value="$(arg sim_gazebo_classic)">
-    <gazebo>
-      <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
-        <parameters>$(arg simulation_controllers)</parameters>
-        <ros>
-          <remapping>/base_controller/cmd_vel_unstamped:=/cmd_vel</remapping>
-        </ros>
-      </plugin>
-    </gazebo>
-  </xacro:if>
+  <!-- Robot Base -->
+  <xacro:if value="$(arg use_robot_base)">
+    <xacro:include filename="$(find guardian_description)/urdf/core/robot_base.xacro"/>
+    <xacro:include filename="$(find guardian_description)/ros2_control/base.ros2_control.xacro"/>
+    <xacro:guardian_base prefix="$(arg prefix)"/>
+    <xacro:guardian_base_ros2_control
+      prefix="$(arg prefix)"
+      sim_gazebo_classic="$(arg sim_gazebo_classic)"/>
 
   <!-- Load Manipulator -->
+  <xacro:include filename="$(find guardian_description)/urdf/core/manipulator_macros.xacro"/>
+
+  <!-- create link fixed to the "world" -->
+  <xacro:unless value="$(arg use_robot_base)">
+    <link name="world"/>
+  </xacro:unless>
+  
+  <xacro:manipulator_description
+    fix_link_to_robot_base="$(arg use_robot_base)"
+    lower_joint_limit="$(arg lower_limit)"
+    upper_joint_limit="$(arg upper_limit)"/>
+
+  <!-- ros2_control -->
+  <xacro:include filename="$(find guardian_description)/ros2_control/manipulator.ros2_control.xacro"/>
+  
+  <xacro:guardian_manipulator_ros2_control
+    lower_joint_limit="$(arg lower_limit)"
+    upper_joint_limit="$(arg upper_limit)"
+    sim_gazebo_classic="$(arg sim_gazebo_classic)"/>
+
+  <!-- Gazebo Classic -->
+  <xacro:if value="$(arg sim_gazebo_classic)">
+    <xacro:include filename="$(find guardian_simulation)/urdf/gazebo.urdf.xacro"/>
+      <gazebo>
+        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+          <parameters>$(arg simulation_controllers)</parameters>
+          <ros>
+            <remapping>/base_controller/cmd_vel_unstamped:=/cmd_vel</remapping>
+          </ros>
+        </plugin>
+      </gazebo>
+    </xacro:if>
+  </xacro:if>
+
 
 </robot>
