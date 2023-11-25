@@ -1,13 +1,13 @@
 repositories:
-  husky:
-    type: git
-    url: https://github.com/husky/husky.git
-    version: humble-devel
+  # husky:
+  #   type: git
+  #   url: https://github.com/husky/husky.git
+  #   version: humble-devel
     
-  levibot_skidsteer:
-    type: git
-    url: https://github.com/elsayedelsheikh/levibot_skidsteer.git
-    version: main
+  # levibot_skidsteer:
+  #   type: git
+  #   url: https://github.com/elsayedelsheikh/levibot_skidsteer.git
+  #   version: main
   
   ros_arduino_bridge:
     type: git
