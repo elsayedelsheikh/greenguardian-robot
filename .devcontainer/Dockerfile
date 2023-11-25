@@ -3,13 +3,15 @@ FROM althack/ros2:humble-dev
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
    && apt-get -y install --no-install-recommends \
-        i2c-tools \
-        libi2c-dev \
-        python3-pip \
-        ros-${ROS_DISTRO}-ros-humble-hardware-interface \
-        ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
-        ros-${ROS_DISTRO}-foxglove-bridge \
-        ros-${ROS_DISTRO}-teleop-twist-keyboard  \
+      tmux    \
+      neovim   \
+      i2c-tools \
+      libi2c-dev \
+      python3-pip \
+      ros-${ROS_DISTRO}-foxglove-bridge \
+      ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
+      ros-${ROS_DISTRO}-teleop-twist-keyboard  \
+      ros-${ROS_DISTRO}-ros-humble-hardware-interface \
    # Clean up
    && apt-get autoremove -y \
    && apt-get clean -y \
