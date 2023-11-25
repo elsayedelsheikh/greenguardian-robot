@@ -1,0 +1,9 @@
+<library path="guardian">
+  <class name="guardian/Pca9685SystemHardware"
+         type="guardian::Pca9685SystemHardware"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      The ros2_control for 6DOF manipulator using Adafruit Motor HAT
+    </description>
+  </class>
+</library>
