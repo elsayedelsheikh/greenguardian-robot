@@ -31,6 +31,7 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_init(
   jt_max_pos_ = std::stod(info_.hardware_parameters["jt_upper_limit"]);
 
   // Check URDF ros2_control xacro params
+  int i = 0;
   for (const hardware_interface::ComponentInfo & joint : info_.joints)
   {
     // Check Command Interfaces
@@ -48,7 +49,7 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_init(
     {
       RCLCPP_FATAL(
         rclcpp::get_logger("Pca9685SystemHardware"),
-        "Joint '%s' have %s command interfaces found. '%s' or '%s' expected.", joint.name.c_str(),
+        "Joint '%s' have %s command interfaces found. '%s'.", joint.name.c_str(),
         joint.command_interfaces[0].name.c_str(), hardware_interface::HW_IF_POSITION);
       return hardware_interface::CallbackReturn::ERROR;
     }
@@ -63,7 +64,7 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_init(
 
     if (joint.state_interfaces[0].name != hardware_interface::HW_IF_POSITION) {
       RCLCPP_FATAL(rclcpp::get_logger("RRBotSystemPositionOnlyHardware"),
-                   "Joint '%s' have %s state interface. '%s' or '%s' expected.",
+                   "Joint '%s' have %s state interface. '%s'.",
                    joint.name.c_str(), joint.state_interfaces[0].name.c_str(),
                    hardware_interface::HW_IF_POSITION);
       return hardware_interface::CallbackReturn::ERROR;
@@ -73,6 +74,7 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_init(
     hw_interfaces_[i].name = joint.name;
     hw_interfaces_[i].channel = std::stoi(info_.hardware_parameters[joint.name + "__channel"]);
     hw_interfaces_[i].position = std::stod(info_.hardware_parameters[joint.name + "__init_position"]);
+    i++;
   }
 
   return hardware_interface::CallbackReturn::SUCCESS;
@@ -149,7 +151,7 @@ void Pca9685SystemHardware::set_servo_pos(int channel, double angle){
   double clamped_angle = std::clamp(angle, jt_min_pos_, jt_max_pos_ - 0.001 );
   // Convert the angle to a corresponding pulse width between 1 ms and 2 ms
   double min_pulse_width = 1.0;
-  double pulse_ms = min_pulse_width + (clamped_angle / max_angle); 
+  double pulse_ms = min_pulse_width + (clamped_angle / jt_max_pos_); 
   pca.set_pwm_ms(channel, pulse_ms);
 }
 
