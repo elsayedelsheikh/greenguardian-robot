@@ -27,6 +27,8 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_init(
   // Get Params
   hw_interfaces_.resize(info_.joints.size());
   pca_frequency_ = std::stod(info_.hardware_parameters["pca_frequency"]);
+  jt_min_pos_ = std::stod(info_.hardware_parameters["jt_lower_limit"]);
+  jt_max_pos_ = std::stod(info_.hardware_parameters["jt_upper_limit"]);
 
   // Check URDF ros2_control xacro params
   for (const hardware_interface::ComponentInfo & joint : info_.joints)
@@ -69,8 +71,8 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_init(
 
     // Add joint to the internal structure
     hw_interfaces_[i].name = joint.name;
-    hw_interfaces_[i].channel = std::stoi(info_.hardware_parameters[joint.name + "_channel"]);
-    hw_interfaces_[i].position = std::stod(info_.hardware_parameters[joint.name + "_position"]);
+    hw_interfaces_[i].channel = std::stoi(info_.hardware_parameters[joint.name + "__channel"]);
+    hw_interfaces_[i].position = std::stod(info_.hardware_parameters[joint.name + "__init_position"]);
   }
 
   return hardware_interface::CallbackReturn::SUCCESS;
@@ -144,9 +146,7 @@ hardware_interface::return_type Pca9685SystemHardware::read(
 
 void Pca9685SystemHardware::set_servo_pos(int channel, double angle){
   // Angle is in radians
-  double min_angle = 0.0;
-  double max_angle = M_PI;
-  double clamped_angle = std::clamp(angle, min_angle, max_angle - 0.001 );
+  double clamped_angle = std::clamp(angle, jt_min_pos_, jt_max_pos_ - 0.001 );
   // Convert the angle to a corresponding pulse width between 1 ms and 2 ms
   double min_pulse_width = 1.0;
   double pulse_ms = min_pulse_width + (clamped_angle / max_angle); 

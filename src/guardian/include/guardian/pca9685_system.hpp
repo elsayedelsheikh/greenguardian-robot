@@ -66,6 +66,8 @@ class Pca9685SystemHardware : public hardware_interface::SystemInterface {
       const rclcpp::Time& time, const rclcpp::Duration& period) override;
 
  private:
+  double jt_min_pos_;
+  double jt_max_pos_;
   std::vector<SteerJoint> hw_interfaces_;
   
   PCA9685 pca;
