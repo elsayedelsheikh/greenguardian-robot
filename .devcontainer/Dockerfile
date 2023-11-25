@@ -6,6 +6,7 @@ RUN apt-get update \
         i2c-tools \
         libi2c-dev \
         python3-pip \
+        ros-${ROS_DISTRO}-ros-humble-hardware-interface \
         ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
         ros-${ROS_DISTRO}-foxglove-bridge \
         ros-${ROS_DISTRO}-teleop-twist-keyboard  \
