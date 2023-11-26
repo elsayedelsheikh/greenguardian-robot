@@ -19,23 +19,20 @@
     <xacro:guardian_base_ros2_control
       prefix="$(arg prefix)"
       sim_gazebo_classic="$(arg sim_gazebo_classic)"/>
+  </xacro:if>
 
   <!-- Load Manipulator -->
   <xacro:include filename="$(find guardian_description)/urdf/core/manipulator_macros.xacro"/>
-
   <!-- create link fixed to the "world" -->
   <xacro:unless value="$(arg use_robot_base)">
     <link name="world"/>
   </xacro:unless>
-  
   <xacro:manipulator_description
     fix_link_to_robot_base="$(arg use_robot_base)"
     lower_joint_limit="$(arg lower_limit)"
     upper_joint_limit="$(arg upper_limit)"/>
-
-  <!-- ros2_control -->
+  <!-- Manipulator ros2_control -->
   <xacro:include filename="$(find guardian_description)/ros2_control/manipulator.ros2_control.xacro"/>
-  
   <xacro:guardian_manipulator_ros2_control
     lower_joint_limit="$(arg lower_limit)"
     upper_joint_limit="$(arg upper_limit)"
@@ -52,8 +49,6 @@
           </ros>
         </plugin>
       </gazebo>
-    </xacro:if>
   </xacro:if>
-
 
 </robot>
