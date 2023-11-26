@@ -3,7 +3,6 @@ FROM althack/ros2:humble-dev
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
    && apt-get -y install --no-install-recommends \
-      apt-get upgrade -y \
       tmux    \
       neovim   \ 
       i2c-tools \
