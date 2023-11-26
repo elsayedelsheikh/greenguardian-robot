@@ -125,7 +125,7 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_activate(
 {
   hw_interfaces_[0].position = 0.0;
   hw_interfaces_[1].position = 3.1;
-  hw_interfaces_[2].position = 3.1;
+  hw_interfaces_[2].position = 1.57;
   hw_interfaces_[3].position = 0.0;
   hw_interfaces_[4].position = 0.0;
   
