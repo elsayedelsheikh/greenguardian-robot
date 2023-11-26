@@ -25,7 +25,6 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_init(
   }
 
   // Get Params
-  hw_interfaces_.resize(info_.joints.size());
   // pca_frequency_ = std::stod(info_.hardware_parameters["pca_frequency"]);
   // jt_min_pos_ = std::stod(info_.hardware_parameters["jt_lower_limit"]);
   // jt_max_pos_ = std::stod(info_.hardware_parameters["jt_upper_limit"]);

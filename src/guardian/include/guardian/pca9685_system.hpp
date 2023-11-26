@@ -68,7 +68,8 @@ class Pca9685SystemHardware : public hardware_interface::SystemInterface {
  private:
   double jt_min_pos_;
   double jt_max_pos_;
-  std::vector<SteerJoint> hw_interfaces_;
+  static constexpr int NUM_INTERFACES = 5;
+  SteerJoint hw_interfaces_[NUM_INTERFACES];
   
   PCA9685 pca;
   double pca_frequency_;
