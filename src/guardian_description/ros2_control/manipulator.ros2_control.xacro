@@ -46,7 +46,7 @@
         <state_interface name="position">
           <param name="initial_value">{j1_init}</param>
         </state_interface>
-        <state_interface name="velocity"/>
+        <!-- <state_interface name="velocity"/> -->
       </joint>
 
       <joint name="joint_2">
@@ -57,7 +57,7 @@
         <state_interface name="position">
           <param name="initial_value">{j2_init}</param>
         </state_interface>
-        <state_interface name="velocity"/>
+        <!-- <state_interface name="velocity"/> -->
       </joint>
 
       <joint name="joint_3">
@@ -68,7 +68,7 @@
         <state_interface name="position">
           <param name="initial_value">{j3_init}</param>
         </state_interface>
-        <state_interface name="velocity"/>
+        <!-- <state_interface name="velocity"/> -->
       </joint>
 
       <joint name="joint_4">
@@ -79,7 +79,7 @@
         <state_interface name="position">
           <param name="initial_value">{j4_init}</param>
         </state_interface>
-        <state_interface name="velocity"/>
+        <!-- <state_interface name="velocity"/> -->
       </joint>
 
       <joint name="joint_5">
@@ -90,7 +90,7 @@
         <state_interface name="position">
           <param name="initial_value">{j5_init}</param>
         </state_interface>
-        <state_interface name="velocity"/>
+        <!-- <state_interface name="velocity"/> -->
       </joint>
 
     </ros2_control>
