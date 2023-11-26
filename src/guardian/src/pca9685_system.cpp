@@ -26,9 +26,12 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_init(
 
   // Get Params
   hw_interfaces_.resize(info_.joints.size());
-  pca_frequency_ = std::stod(info_.hardware_parameters["pca_frequency"]);
-  jt_min_pos_ = std::stod(info_.hardware_parameters["jt_lower_limit"]);
-  jt_max_pos_ = std::stod(info_.hardware_parameters["jt_upper_limit"]);
+  // pca_frequency_ = std::stod(info_.hardware_parameters["pca_frequency"]);
+  // jt_min_pos_ = std::stod(info_.hardware_parameters["jt_lower_limit"]);
+  // jt_max_pos_ = std::stod(info_.hardware_parameters["jt_upper_limit"]);
+  pca_frequency_ = 50.0;
+  jt_min_pos_ = 0.0;
+  jt_max_pos_ = 3.14159;
 
   // Check URDF ros2_control xacro params
   int i = 0;
@@ -74,6 +77,7 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_init(
     hw_interfaces_[i].name = joint.name;
     hw_interfaces_[i].channel = std::stoi(info_.hardware_parameters[joint.name + "__channel"]);
     // hw_interfaces_[i].position = std::stod(info_.hardware_parameters[joint.name + "__init_position"]);
+    hw_interfaces_[i].position = 0.0;
     i++;
   }
 
