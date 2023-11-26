@@ -36,41 +36,41 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_init(
   int i = 0;
   for (const hardware_interface::ComponentInfo & joint : info_.joints)
   {
-    // // Check Command Interfaces
-    // // Pca9685System has one command interface on each joint (position)
-    // if (joint.command_interfaces.size() != 1)
-    // {
-    //   RCLCPP_FATAL(
-    //     rclcpp::get_logger("Pca9685SystemHardware"),
-    //     "Joint '%s' has %zu command interfaces found. 1 expected.", joint.name.c_str(),
-    //     joint.command_interfaces.size());
-    //   return hardware_interface::CallbackReturn::ERROR;
-    // }
+    // Check Command Interfaces
+    // Pca9685System has one command interface on each joint (position)
+    if (joint.command_interfaces.size() != 1)
+    {
+      RCLCPP_FATAL(
+        rclcpp::get_logger("Pca9685SystemHardware"),
+        "Joint '%s' has %zu command interfaces found. 1 expected.", joint.name.c_str(),
+        joint.command_interfaces.size());
+      return hardware_interface::CallbackReturn::ERROR;
+    }
 
-    // if (joint.command_interfaces[0].name != hardware_interface::HW_IF_POSITION)
-    // {
-    //   RCLCPP_FATAL(
-    //     rclcpp::get_logger("Pca9685SystemHardware"),
-    //     "Joint '%s' have %s command interfaces found. '%s'.", joint.name.c_str(),
-    //     joint.command_interfaces[0].name.c_str(), hardware_interface::HW_IF_POSITION);
-    //   return hardware_interface::CallbackReturn::ERROR;
-    // }
+    if (joint.command_interfaces[0].name != hardware_interface::HW_IF_POSITION)
+    {
+      RCLCPP_FATAL(
+        rclcpp::get_logger("Pca9685SystemHardware"),
+        "Joint '%s' have %s command interfaces found. '%s'.", joint.name.c_str(),
+        joint.command_interfaces[0].name.c_str(), hardware_interface::HW_IF_POSITION);
+      return hardware_interface::CallbackReturn::ERROR;
+    }
 
-    // // Check State Interfaces
-    // if (joint.state_interfaces.size() != 1) {
-    //   RCLCPP_FATAL(rclcpp::get_logger("RRBotSystemPositionOnlyHardware"),
-    //                "Joint '%s' has %zu state interface. 1 expected.",
-    //                joint.name.c_str(), joint.state_interfaces.size());
-    //   return hardware_interface::CallbackReturn::ERROR;
-    // }
+    // Check State Interfaces
+    if (joint.state_interfaces.size() != 1) {
+      RCLCPP_FATAL(rclcpp::get_logger("RRBotSystemPositionOnlyHardware"),
+                   "Joint '%s' has %zu state interface. 1 expected.",
+                   joint.name.c_str(), joint.state_interfaces.size());
+      return hardware_interface::CallbackReturn::ERROR;
+    }
 
-    // if (joint.state_interfaces[0].name != hardware_interface::HW_IF_POSITION) {
-    //   RCLCPP_FATAL(rclcpp::get_logger("RRBotSystemPositionOnlyHardware"),
-    //                "Joint '%s' have %s state interface. '%s'.",
-    //                joint.name.c_str(), joint.state_interfaces[0].name.c_str(),
-    //                hardware_interface::HW_IF_POSITION);
-    //   return hardware_interface::CallbackReturn::ERROR;
-    // }
+    if (joint.state_interfaces[0].name != hardware_interface::HW_IF_POSITION) {
+      RCLCPP_FATAL(rclcpp::get_logger("RRBotSystemPositionOnlyHardware"),
+                   "Joint '%s' have %s state interface. '%s'.",
+                   joint.name.c_str(), joint.state_interfaces[0].name.c_str(),
+                   hardware_interface::HW_IF_POSITION);
+      return hardware_interface::CallbackReturn::ERROR;
+    }
 
     // Add joint to the internal structure
     hw_interfaces_[i].name = joint.name;
