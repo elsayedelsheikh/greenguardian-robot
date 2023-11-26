@@ -90,7 +90,7 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_configure(
 
   pca.set_pwm_freq(pca_frequency_);
   for (std::size_t i = 0; i < NUM_INTERFACES; i++){
-    hw_interfaces_[i].position = 1.57;
+    hw_interfaces_[i].position = 3.0;
   }
 
   RCLCPP_INFO(rclcpp::get_logger("Pca9685SystemHardware"),
