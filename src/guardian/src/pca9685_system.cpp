@@ -155,6 +155,7 @@ void Pca9685SystemHardware::set_servo_pos(int channel, double angle){
   double min_pulse_width = 0.5;
   double max_pulse_width = 2.5;
   double pulse_ms = min_pulse_width + (clamped_angle / jt_max_pos_) * (max_pulse_width - min_pulse_width);  
+  
   pca.set_pwm_ms(channel, pulse_ms);
 }
 
