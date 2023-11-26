@@ -9,7 +9,7 @@
   <!--Manipulator Args -->
   <!-- <xacro:arg name="lower_limit" default="${str(-pi/2)}"/> -->
   <xacro:arg name="lower_limit" default="0.0"/>
-  <xacro:arg name="upper_limit" default="${str(pi}"/>
+  <xacro:arg name="upper_limit" default="${str(pi)}"/>
 
   <!-- Robot Base -->
   <xacro:if value="$(arg use_robot_base)">
