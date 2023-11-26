@@ -134,7 +134,6 @@ def generate_launch_description():
         output="screen",
     )
 
-
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",

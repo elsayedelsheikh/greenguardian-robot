@@ -8,9 +8,12 @@
   >
 
   <xacro:property name="j1_init" value="0.0"/>
-  <xacro:property name="j2_init" value="-0.382"/>
+  <xacro:property name="j2_init" value="0.0"/>
+  <xacro:property name="j3_init" value="0.0"/>
+  <xacro:property name="j4_init" value="0.0"/>
+  <!-- <xacro:property name="j2_init" value="-0.382"/>
   <xacro:property name="j3_init" value="1.36"/>
-  <xacro:property name="j4_init" value="0.858"/>
+  <xacro:property name="j4_init" value="0.858"/> -->
   <xacro:property name="j5_init" value="0.0"/>
 
     <ros2_control name="manipulator_ros2control" type="system">
@@ -25,11 +28,11 @@
           <param name="jt_lower_limit">{lower_joint_limit}</param>
           <param name="jt_upper_limit">{upper_joint_limit}</param>
           
-          <param name="joint_1__channel">9</param>
-          <param name="joint_2__channel">10</param>
-          <param name="joint_3__channel">11</param>
-          <param name="joint_4__channel">12</param>
-          <param name="joint_5__channel">13</param>   
+          <param name="joint_1__channel">0</param>
+          <param name="joint_2__channel">4</param>
+          <param name="joint_3__channel">12</param>
+          <param name="joint_4__channel">7</param>
+          <param name="joint_5__channel">5</param>   
           <param name="joint_1__init_position">{j1_init}</param>  
           <param name="joint_2__init_position">{j2_init}</param>
           <param name="joint_3__init_position">{j3_init}</param>
