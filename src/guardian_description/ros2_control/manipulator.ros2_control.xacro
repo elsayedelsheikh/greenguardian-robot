@@ -8,12 +8,9 @@
   >
 
   <xacro:property name="j1_init" value="0.0"/>
-  <xacro:property name="j2_init" value="0.0"/>
-  <xacro:property name="j3_init" value="0.0"/>
-  <xacro:property name="j4_init" value="0.0"/>
-  <!-- <xacro:property name="j2_init" value="-0.382"/>
+  <xacro:property name="j2_init" value="-0.382"/>
   <xacro:property name="j3_init" value="1.36"/>
-  <xacro:property name="j4_init" value="0.858"/> -->
+  <xacro:property name="j4_init" value="0.858"/>
   <xacro:property name="j5_init" value="0.0"/>
 
     <ros2_control name="manipulator_ros2control" type="system">
