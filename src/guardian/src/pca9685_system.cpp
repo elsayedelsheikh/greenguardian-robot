@@ -30,7 +30,7 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_init(
   // jt_max_pos_ = std::stod(info_.hardware_parameters["jt_upper_limit"]);
   pca_frequency_ = 50.0;
   jt_min_pos_ = 0.0;
-  jt_max_pos_ = 2*3.14159;
+  jt_max_pos_ = 3.14159;
 
   // Check URDF ros2_control xacro params
   int i = 0;
@@ -124,8 +124,8 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_activate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
   hw_interfaces_[0].position = 0.0;
-  hw_interfaces_[1].position = 3.2;
-  hw_interfaces_[2].position = 3.2;
+  hw_interfaces_[1].position = 3.1;
+  hw_interfaces_[2].position = 3.1;
   hw_interfaces_[3].position = 0.0;
   hw_interfaces_[4].position = 0.0;
   
