@@ -13,6 +13,7 @@ RUN apt-get update \
       ros-${ROS_DISTRO}-teleop-twist-keyboard  \
       ros-${ROS_DISTRO}-hardware-interface \
       ros-${ROS_DISTRO}-controller-manager \
+      ros-${ROS_DISTRO}-controllers \
       ros-${ROS_DISTRO}-urdf-tutorial \
    # Clean up
    && apt-get autoremove -y \
