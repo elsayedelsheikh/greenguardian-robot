@@ -89,11 +89,6 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_configure(
               "Configuring...");
 
   pca.set_pwm_freq(pca_frequency_);
-  hw_interfaces_[0].position = 0.0;
-  hw_interfaces_[1].position = 1.57;
-  hw_interfaces_[2].position = 3.14;
-  hw_interfaces_[3].position = 0.0;
-  hw_interfaces_[4].position = 0.0;
 
   RCLCPP_INFO(rclcpp::get_logger("Pca9685SystemHardware"),
               "Successfully configured!");
@@ -128,9 +123,12 @@ std::vector<hardware_interface::CommandInterface> Pca9685SystemHardware::export_
 hardware_interface::CallbackReturn Pca9685SystemHardware::on_activate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
-  // for (std::size_t i = 0; i < NUM_INTERFACES; i++) {
-  //   hw_interfaces_[i].position = 0.0;
-  // }
+  hw_interfaces_[0].position = 0.0;
+  hw_interfaces_[1].position = 1.57;
+  hw_interfaces_[2].position = 3.14;
+  hw_interfaces_[3].position = 0.0;
+  hw_interfaces_[4].position = 0.0;
+  
   RCLCPP_INFO(rclcpp::get_logger("Pca9685SystemHardware"), "Successfully activated!");
 
   return hardware_interface::CallbackReturn::SUCCESS;
