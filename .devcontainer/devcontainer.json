@@ -17,7 +17,7 @@
 		// "--mount type=bind,source=/dev/i2c-1,target=/dev/i2c-1",
 		"--ipc=host"
 	],
-	"mounts": [{ "source": "/dev/i2c-1", "target": "/dev/i2c-1", "type": "volume" }],
+	"mounts": [{ "source": "/dev/i2c-1", "target": "/dev/i2c-1", "type": "bind" }],
 
 	// "containerEnv": {
 	// 	"DISPLAY": "${localEnv:DISPLAY}", // Needed for GUI try ":0" for windows
