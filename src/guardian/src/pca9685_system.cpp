@@ -90,7 +90,7 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_configure(
               "Configuring...");
 
   pca.set_pwm_freq(pca_frequency_);
-  for (std::size_t i = 0; i < hw_interfaces_.size(); i++){
+  for (std::size_t i = 0; i < NUM_INTERFACES; i++){
     hw_interfaces_[i].position = 0.0;
   }
 
@@ -104,7 +104,7 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_configure(
 std::vector<hardware_interface::StateInterface> Pca9685SystemHardware::export_state_interfaces()
 {
   std::vector<hardware_interface::StateInterface> state_interfaces;
-  for (std::size_t i = 0; i < hw_interfaces_.size(); i++) {
+  for (std::size_t i = 0; i < NUM_INTERFACES; i++) {
     state_interfaces.emplace_back(hardware_interface::StateInterface(
       hw_interfaces_[i].name, hardware_interface::HW_IF_POSITION, &hw_interfaces_[i].position));
   }
@@ -116,7 +116,7 @@ std::vector<hardware_interface::CommandInterface> Pca9685SystemHardware::export_
 {
   std::vector<hardware_interface::CommandInterface> command_interfaces;
 
-  for (std::size_t i = 0; i < hw_interfaces_.size(); i++) {
+  for (std::size_t i = 0; i < NUM_INTERFACES; i++) {
     command_interfaces.emplace_back(hardware_interface::CommandInterface(
       hw_interfaces_[i].name, hardware_interface::HW_IF_POSITION, &hw_interfaces_[i].position));
   }
@@ -127,7 +127,7 @@ std::vector<hardware_interface::CommandInterface> Pca9685SystemHardware::export_
 hardware_interface::CallbackReturn Pca9685SystemHardware::on_activate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
-  // for (std::size_t i = 0; i < hw_interfaces_.size(); i++) {
+  // for (std::size_t i = 0; i < NUM_INTERFACES; i++) {
   //   hw_interfaces_[i].position = 0.0;
   // }
   RCLCPP_INFO(rclcpp::get_logger("Pca9685SystemHardware"), "Successfully activated!");
@@ -162,7 +162,7 @@ hardware_interface::return_type Pca9685SystemHardware::write(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
 
-  for (std::size_t i = 0; i < hw_interfaces_.size(); i++)
+  for (std::size_t i = 0; i < NUM_INTERFACES; i++)
   {
     set_servo_pos(hw_interfaces_[i].channel, hw_interfaces_[i].position);
   }
