@@ -14,10 +14,10 @@
 		"--security-opt=apparmor:unconfined",
 		"--volume=/tmp/.X11-unix:/tmp/.X11-unix",
 		"--volume=/mnt/wslg:/mnt/wslg",
-		// "--mount type=bind,source=/dev/i2c-1,target=/dev/i2c-1",
+		"--device /dev/i2c-1:/dev/i2c-1",
 		"--ipc=host"
 	],
-	"mounts": [{ "source": "/dev/i2c-1", "target": "/dev/i2c-1", "type": "bind" }],
+	// "mounts": [{ "source": "/dev/i2c-1", "target": "/dev/i2c-1", "type": "bind" }],
 
 	// "containerEnv": {
 	// 	"DISPLAY": "${localEnv:DISPLAY}", // Needed for GUI try ":0" for windows
