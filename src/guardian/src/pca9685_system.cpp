@@ -73,7 +73,7 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_init(
     // Add joint to the internal structure
     hw_interfaces_[i].name = joint.name;
     hw_interfaces_[i].channel = std::stoi(info_.hardware_parameters[joint.name + "__channel"]);
-    hw_interfaces_[i].position = std::stod(info_.hardware_parameters[joint.name + "__init_position"]);
+    // hw_interfaces_[i].position = std::stod(info_.hardware_parameters[joint.name + "__init_position"]);
     i++;
   }
 
@@ -87,9 +87,9 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_configure(
               "Configuring...");
 
   pca.set_pwm_freq(pca_frequency_);
-  // for (std::size_t i = 0; i < hw_interfaces_.size(); i++){
-  //   hw_interfaces_[i].position = 0.0;
-  // }
+  for (std::size_t i = 0; i < hw_interfaces_.size(); i++){
+    hw_interfaces_[i].position = 0.0;
+  }
 
   RCLCPP_INFO(rclcpp::get_logger("Pca9685SystemHardware"),
               "Successfully configured!");
