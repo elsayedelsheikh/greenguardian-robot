@@ -151,7 +151,7 @@ hardware_interface::return_type Pca9685SystemHardware::read(
 void Pca9685SystemHardware::set_servo_pos(int channel, double angle){
   // Angle is in radians
   double clamped_angle = std::clamp(angle, jt_min_pos_, jt_max_pos_ - 0.001 );
-  // Convert the angle to a corresponding pulse width between 1 ms and 2 ms
+  // Convert the angle to a corresponding pulse width between 0.5 ms and 2.5 ms
   double min_pulse_width = 0.5;
   double max_pulse_width = 2.5;
   double pulse_ms = min_pulse_width + (clamped_angle / jt_max_pos_) * (max_pulse_width - min_pulse_width);  
