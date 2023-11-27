@@ -28,8 +28,8 @@
           <param name="joint_1__channel">0</param>
           <param name="joint_2__channel">4</param>
           <param name="joint_3__channel">12</param>
-          <param name="joint_4__channel">7</param>
-          <param name="joint_5__channel">5</param>   
+          <param name="joint_4__channel">5</param>
+          <param name="joint_5__channel">7</param>   
           <param name="joint_1__init_position">{j1_init}</param>  
           <param name="joint_2__init_position">{j2_init}</param>
           <param name="joint_3__init_position">{j3_init}</param>
