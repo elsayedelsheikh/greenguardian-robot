@@ -9,3 +9,8 @@ chmod 666 /dev/i2c-1
 ## 6DOF Arm Arduino Sketch
 limits: 10-170
 
+## Visualize
+```bash
+ros2 launch foxglove_bridge foxglove_bridge_launch.xml
+docker run --rm -p "8080:8080" ghcr.io/foxglove/studio:latest
+```
