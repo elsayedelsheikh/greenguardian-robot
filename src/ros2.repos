@@ -1,12 +1,5 @@
 repositories:
-  # husky:
-  #   type: git
-  #   url: https://github.com/husky/husky.git
-  #   version: humble-devel
-  # levibot_skidsteer:
-  #   type: git
-  #   url: https://github.com/elsayedelsheikh/levibot_skidsteer.git
-  #   version: main
+  ## ROS2 Control
   ros-controls/realtime_tools:
     type: git
     url: https://github.com/ros-controls/realtime_tools.git
@@ -23,11 +16,20 @@ repositories:
     type: git
     url: https://github.com/ros-controls/ros2_controllers.git
     version: humble
-  ros_arduino_bridge:
+  ## ROS2 Control demos
+  ros2_control_demos:
     type: git
-    url: https://github.com/elsayedelsheikh/ros_arduino_bridge
-    version: greenguardian-control
+    url: https://github.com/ros-controls/ros2_control_demos.git
+    version: master
+
+  ## URDF to DH tool
   urdf_to_dh:
     type: git
     url: https://github.com/mcevoyandy/urdf_to_dh.git
     version: main
+  ## Arduino Bridge
+  ros_arduino_bridge:
+    type: git
+    url: https://github.com/elsayedelsheikh/ros_arduino_bridge
+    version: greenguardian-control
+

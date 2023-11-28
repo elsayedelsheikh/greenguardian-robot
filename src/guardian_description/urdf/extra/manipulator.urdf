@@ -189,62 +189,62 @@
     <hardware>
       <plugin>guardian/Pca9685SystemHardware</plugin>
       <param name="pca_frequency">50.0</param>
-      <param name="jt_lower_limit">{lower_joint_limit}</param>
-      <param name="jt_upper_limit">{upper_joint_limit}</param>
+      <param name="jt_lower_limit">0.0</param>
+      <param name="jt_upper_limit">3.141592653589793</param>
       <param name="joint_1__channel">0</param>
       <param name="joint_2__channel">4</param>
       <param name="joint_3__channel">12</param>
       <param name="joint_4__channel">5</param>
       <param name="joint_5__channel">7</param>
-      <param name="joint_1__init_position">{j1_init}</param>
-      <param name="joint_2__init_position">{j2_init}</param>
-      <param name="joint_3__init_position">{j3_init}</param>
-      <param name="joint_4__init_position">{j4_init}</param>
-      <param name="joint_5__init_position">{j5_init}</param>
+      <param name="joint_1__init_position">0.0</param>
+      <param name="joint_2__init_position">3.1</param>
+      <param name="joint_3__init_position">0.0</param>
+      <param name="joint_4__init_position">0.0</param>
+      <param name="joint_5__init_position">0.0</param>
     </hardware>
     <joint name="joint_1">
       <command_interface name="position">
-        <param name="min">{lower_joint_limit}</param>
-        <param name="max">{upper_joint_limit}</param>
+        <param name="min">0.0</param>
+        <param name="max">3.141592653589793</param>
       </command_interface>
       <state_interface name="position">
-        <param name="initial_value">{j1_init}</param>
+        <param name="initial_value">0.0</param>
       </state_interface>
     </joint>
     <joint name="joint_2">
       <command_interface name="position">
-        <param name="min">{lower_joint_limit}</param>
-        <param name="max">{upper_joint_limit}</param>
+        <param name="min">0.0</param>
+        <param name="max">3.141592653589793</param>
       </command_interface>
       <state_interface name="position">
-        <param name="initial_value">{j2_init}</param>
+        <param name="initial_value">3.1</param>
       </state_interface>
     </joint>
     <joint name="joint_3">
       <command_interface name="position">
-        <param name="min">{lower_joint_limit}</param>
-        <param name="max">{upper_joint_limit}</param>
+        <param name="min">0.0</param>
+        <param name="max">3.141592653589793</param>
       </command_interface>
       <state_interface name="position">
-        <param name="initial_value">{j3_init}</param>
+        <param name="initial_value">0.0</param>
       </state_interface>
     </joint>
     <joint name="joint_4">
       <command_interface name="position">
-        <param name="min">{lower_joint_limit}</param>
-        <param name="max">{upper_joint_limit}</param>
+        <param name="min">0.0</param>
+        <param name="max">3.141592653589793</param>
       </command_interface>
       <state_interface name="position">
-        <param name="initial_value">{j4_init}</param>
+        <param name="initial_value">0.0</param>
       </state_interface>
     </joint>
     <joint name="joint_5">
       <command_interface name="position">
-        <param name="min">{lower_joint_limit}</param>
-        <param name="max">{upper_joint_limit}</param>
+        <param name="min">0.0</param>
+        <param name="max">3.141592653589793</param>
       </command_interface>
       <state_interface name="position">
-        <param name="initial_value">{j5_init}</param>
+        <param name="initial_value">0.0</param>
       </state_interface>
     </joint>
   </ros2_control>
