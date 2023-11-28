@@ -1,0 +1,134 @@
+Starting GenerateDhParams Node...
+URDF Tree:
+world
+└── base_joint
+    └── manipulator_base_link
+        └── joint_1
+            └── link_1
+                └── joint_2
+                    └── link_2
+                        └── joint_3
+                            └── link_3
+                                └── joint_4
+                                    └── link_4
+                                        └── joint_5
+                                            └── link_5
+Joint Info:
+{'base_joint': {'axis': array([0., 0., 1.]),
+                'child': 'manipulator_base_link',
+                'dh': array([0., 0., 0., 0.]),
+                'parent': 'world',
+                'rpy': array([0., 0., 0.]),
+                'xyz': array([0., 0., 0.])},
+ 'joint_1': {'axis': array([0., 0., 1.]),
+             'child': 'link_1',
+             'dh': array([0., 0., 0., 0.]),
+             'parent': 'manipulator_base_link',
+             'rpy': array([0., 0., 0.]),
+             'xyz': array([0.    , 0.    , 0.0793])},
+ 'joint_2': {'axis': array([ 0., -1.,  0.]),
+             'child': 'link_2',
+             'dh': array([0., 0., 0., 0.]),
+             'parent': 'link_1',
+             'rpy': array([0.        , 3.14159265, 0.        ]),
+             'xyz': array([0.  , 0.  , 0.03])},
+ 'joint_3': {'axis': array([0., 1., 0.]),
+             'child': 'link_3',
+             'dh': array([0., 0., 0., 0.]),
+             'parent': 'link_2',
+             'rpy': array([0., 0., 0.]),
+             'xyz': array([0.   , 0.   , 0.127])},
+ 'joint_4': {'axis': array([0., 1., 0.]),
+             'child': 'link_4',
+             'dh': array([0., 0., 0., 0.]),
+             'parent': 'link_3',
+             'rpy': array([0., 0., 0.]),
+             'xyz': array([0.     , 0.     , 0.18415])},
+ 'joint_5': {'axis': array([0., 0., 1.]),
+             'child': 'link_5',
+             'dh': array([0., 0., 0., 0.]),
+             'parent': 'link_4',
+             'rpy': array([0., 0., 0.]),
+             'xyz': array([0.    , 0.    , 0.0635])}}
+Calculate world tfs:
+
+get tf from  world  to  manipulator_base_link
+
+get tf from  manipulator_base_link  to  link_1
+
+get tf from  link_1  to  link_2
+
+get tf from  link_2  to  link_3
+
+get tf from  link_3  to  link_4
+
+get tf from  link_4  to  link_5
+calculate_dh_params
+process_order = 
+ ['world', 'base_joint', 'manipulator_base_link', 'joint_1', 'link_1', 'joint_2', 'link_2', 'joint_3', 'link_3', 'joint_4', 'link_4', 'joint_5', 'link_5']
+
+
+process dh params for  manipulator_base_link
+[0. 0. 1.]
+  Process collinear case.
+[0. 0. 0. 0.]
+
+
+process dh params for  link_1
+[0. 0. 1.]
+  Process collinear case.
+[0.0793 0.     0.     0.    ]
+
+
+process dh params for  link_2
+[ 0. -1.  0.]
+  Process intersection case.
+[[-1.0000000e+00  0.0000000e+00  1.2246468e-16  0.0000000e+00]
+ [ 0.0000000e+00  1.0000000e+00  0.0000000e+00  0.0000000e+00]
+ [-1.2246468e-16  0.0000000e+00 -1.0000000e+00  3.0000000e-02]
+ [ 0.0000000e+00  0.0000000e+00  0.0000000e+00  1.0000000e+00]]
+0.0
+[0.03       0.         0.         1.57079633]
+
+
+process dh params for  link_3
+[ 0.000000e+00  6.123234e-17 -1.000000e+00]
+  Process parallel case.
+[-7.77650717e-18 -1.57079633e+00  1.27000000e-01  0.00000000e+00]
+
+
+process dh params for  link_4
+[-6.12323400e-17  3.74939946e-33 -1.00000000e+00]
+  Process parallel case.
+[-1.12759354e-17  1.03461540e-16  1.84150000e-01  0.00000000e+00]
+
+
+process dh params for  link_5
+[ 1.000000e+00 -4.222920e-17 -6.123234e-17]
+  Process intersection case.
+[[-4.22292000e-17 -6.12323400e-17  1.00000000e+00  6.35000000e-02]
+ [-1.00000000e+00  1.00845916e-32 -4.22292000e-17 -2.68155420e-18]
+ [-7.49879891e-33 -1.00000000e+00 -6.12323400e-17 -3.88825359e-18]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]]
+1.5707963267948966
+[7.70371978e-34 1.57079633e+00 0.00000000e+00 1.57079633e+00]
+
+DH Parameters: (csv)
+,joint,parent,child,d,theta,r,alpha
+0,base_joint,world,manipulator_base_link,0.0,0.0,0.0,0.0
+1,joint_1,manipulator_base_link,link_1,0.0793,0.0,0.0,0.0
+2,joint_2,link_1,link_2,0.03,0.0,0.0,90.0002104591497
+3,joint_3,link_2,link_3,-0.0,-90.0002104591497,0.127,0.0
+4,joint_4,link_3,link_4,-0.0,0.0,0.18415,0.0
+5,joint_5,link_4,link_5,0.0,90.0002104591497,0.0,90.0002104591497
+
+
+DH Parameters: (markdown)
+|    | joint      | parent                | child                 |       d |    theta |       r |   alpha |
+|---:|:-----------|:----------------------|:----------------------|--------:|---------:|--------:|--------:|
+|  0 | base_joint | world                 | manipulator_base_link |  0      |   0      | 0       |  0      |
+|  1 | joint_1    | manipulator_base_link | link_1                |  0.0793 |   0      | 0       |  0      |
+|  2 | joint_2    | link_1                | link_2                |  0.03   |   0      | 0       | 90.0002 |
+|  3 | joint_3    | link_2                | link_3                | -0      | -90.0002 | 0.127   |  0      |
+|  4 | joint_4    | link_3                | link_4                | -0      |   0      | 0.18415 |  0      |
+|  5 | joint_5    | link_4                | link_5                |  0      |  90.0002 | 0       | 90.0002 |
