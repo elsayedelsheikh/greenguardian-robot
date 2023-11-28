@@ -22,7 +22,8 @@ services:
       - $XAUTHORITY:/root/.Xauthority ## Linux
       # - /mnt/wslg:/mnt/wslg ## WSL
       - ../src/guardian_description:/root/ws/src/guardian_description
-      # - ../src/guardian_moveit_config:/root/ws/src/guardian_moveit_config
+      - ../src/guardian_moveit_config:/root/ws/src/guardian_moveit_config
+      - ../src/ThirdParty:/root/ws/src/ThirdParty
       ## Examples
       # - ../src/ThirdParty/ros2_control_demos/example_7:/root/ws/src/example_7
       # - ../src/ThirdParty/ros2_control_demos/ros2_control_demo_description:/root/ws/src/ros2_control_demo_description

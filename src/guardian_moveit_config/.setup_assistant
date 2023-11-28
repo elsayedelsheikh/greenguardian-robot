@@ -6,8 +6,8 @@ moveit_setup_assistant_config:
     relative_path: config/greenguardian.srdf
   package_settings:
     author_name: elsayed
-    author_email: elsayedelsheikh97@gmail.com
-    generated_timestamp: 1701197631
+    author_email: elsayed.elsheikh97@gmail.com
+    generated_timestamp: 1701202091
   control_xacro:
     command:
       - position
