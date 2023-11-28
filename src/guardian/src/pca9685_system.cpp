@@ -128,6 +128,7 @@ hardware_interface::CallbackReturn Pca9685SystemHardware::on_activate(
   hw_interfaces_[2].position = 0.0;
   hw_interfaces_[3].position = 0.0;
   hw_interfaces_[4].position = 0.0;
+  hw_interfaces_[5].position = 0.0;
   
   RCLCPP_INFO(rclcpp::get_logger("Pca9685SystemHardware"), "Successfully activated!");
 

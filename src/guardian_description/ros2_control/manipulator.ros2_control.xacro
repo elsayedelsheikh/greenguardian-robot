@@ -30,6 +30,7 @@
           <param name="joint_3__channel">12</param>
           <param name="joint_4__channel">5</param>
           <param name="joint_5__channel">7</param>   
+          <param name="joint_6__channel">14</param>   
           <param name="joint_1__init_position">${j1_init}</param>  
           <param name="joint_2__init_position">${j2_init}</param>
           <param name="joint_3__init_position">${j3_init}</param>
@@ -86,6 +87,11 @@
         <state_interface name="position">
           <param name="initial_value">${j5_init}</param>
         </state_interface>
+      </joint>
+
+      <joint name="joint_6">
+        <command_interface name="position"/>
+        <state_interface name="position"/>
       </joint>
 
     </ros2_control>

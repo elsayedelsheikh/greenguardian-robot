@@ -1,6 +1,5 @@
 # Example command:
 #   DOCKER_IMAGE=humble-tutorial docker compose run moveit
-
 services:      
   moveit:
     image: ghcr.io/ros-planning/moveit2_tutorials:$DOCKER_IMAGE
