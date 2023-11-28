@@ -3,10 +3,12 @@
     <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
 
     <!-- Import greenguardian urdf file -->
-    <xacro:include filename="$(find guardian_description)/urdf/robot.urdf.xacro" />
+    <xacro:include filename="$(find guardian_description)/urdf/extra/manipulator.urdf" />
 
     <!-- Import control_xacro -->
     <xacro:include filename="greenguardian.ros2_control.xacro" />
+
+
     <xacro:greenguardian_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
 
 </robot>

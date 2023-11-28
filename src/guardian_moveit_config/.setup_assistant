@@ -1,14 +1,13 @@
 moveit_setup_assistant_config:
   urdf:
     package: guardian_description
-    relative_path: urdf/robot.urdf.xacro
-    xacro_args: use_robot_base:=false
+    relative_path: urdf/extra/manipulator.urdf
   srdf:
     relative_path: config/greenguardian.srdf
   package_settings:
-    author_name: elsayedelsheikh
-    author_email: elsayed.elsheikh97@gmail.com
-    generated_timestamp: 1701188553
+    author_name: elsayed
+    author_email: elsayedelsheikh97@gmail.com
+    generated_timestamp: 1701197631
   control_xacro:
     command:
       - position
