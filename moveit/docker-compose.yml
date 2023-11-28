@@ -18,6 +18,7 @@ services:
     environment:
       QT_X11_NO_MITSHM: 1
       DISPLAY: $DISPLAY
+      
   gpu:
     image: ghcr.io/ros-planning/moveit2_tutorials:$DOCKER_IMAGE
     container_name: moveit2_container
@@ -35,6 +36,8 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /mnt/wslg:/mnt/wslg
       - ../src/guardian_description:/root/ws/src/guardian_description
+      # - ../src/ThirdParty/ros2_control_demos/example_7:/root/ws/src/example_7
+      # - ../src/ThirdParty/ros2_control_demos/ros2_control_demo_description:/root/ws/src/ros2_control_demo_description
     environment:
       QT_X11_NO_MITSHM: 1
       DISPLAY: $DISPLAY
