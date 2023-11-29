@@ -22,3 +22,4 @@ ros2 launch foxglove_bridge foxglove_bridge_launch.xml
 docker run --rm -p "8080:8080" ghcr.io/foxglove/studio:latest
 ```
 
+sudo ln -s /usr/include/eigen3/Eigen /usr/include/Eigen

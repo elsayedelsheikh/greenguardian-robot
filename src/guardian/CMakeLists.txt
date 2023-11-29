@@ -7,10 +7,17 @@ endif()
 
 # find dependencies
 set(dependencies
-  hardware_interface
   pluginlib
+  rcpputils
+  hardware_interface
+  kdl_parser
   rclcpp
-  rclcpp_lifecycle
+  trajectory_msgs
+  pluginlib
+  rcpputils
+  controller_interface
+  realtime_tools
+  trajectory_msgs
 )
 
 find_package(ament_cmake REQUIRED)
@@ -19,6 +26,13 @@ foreach(Dependency IN ITEMS ${dependencies})
 endforeach()
 
 ## COMPILE
+add_executable(send_trajectory reference_generator/send_trajectory.cpp)
+
+ament_target_dependencies(
+  send_trajectory PUBLIC
+  ${dependencies}
+)
+
 add_library(
   ${PROJECT_NAME}
   SHARED
@@ -48,6 +62,11 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE "PCA9685_HARDWARE_INTERFACE_B
 pluginlib_export_plugin_description_file(hardware_interface guardian_hardware_interface.xml)
 
 # INSTALL
+install(
+    TARGETS send_trajectory
+    RUNTIME DESTINATION lib/${PROJECT_NAME}
+)
+
 install(
   DIRECTORY include/
   DESTINATION include/${PROJECT_NAME}
