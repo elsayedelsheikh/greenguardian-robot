@@ -21,6 +21,10 @@ repositories:
     type: git
     url: https://github.com/ros-controls/ros2_control_demos.git
     version: master
+  roscon2022_workshop:
+    type: git
+    url: https://github.com/ros-controls/roscon2022_workshop.git
+    version: master
 
   ## URDF to DH tool
   urdf_to_dh:
@@ -32,4 +36,3 @@ repositories:
     type: git
     url: https://github.com/elsayedelsheikh/ros_arduino_bridge
     version: greenguardian-control
-
