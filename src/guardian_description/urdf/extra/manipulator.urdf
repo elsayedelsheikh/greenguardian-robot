@@ -4,7 +4,7 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <robot name="greenguardian">
-  <!-- <link name="world"/> -->
+  <link name="world"/>
   <material name="black">
     <color rgba="0 0 0 1"/>
   </material>
@@ -37,11 +37,11 @@
         <box size="0.0285 0.0285 0.0793"/>
       </geometry>
     </collision>
-    <!-- <inertial>
+    <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.03965"/>
       <mass value="1.0"/>
       <inertia ixx="0.0005917283333333333" ixy="0.0" ixz="0.0" iyy="0.0005917283333333333" iyz="0.0" izz="0.000135375"/>
-    </inertial> -->
+    </inertial>
   </link>
   <link name="link_1">
     <visual>
@@ -125,31 +125,51 @@
   </link>
   <link name="link_5">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0.05715"/>
+      <origin rpy="0 0 0" xyz="0 0 0.05"/>
       <geometry>
-        <box size="0.0285 0.035 0.1143"/>
+        <box size="0.0285 0.035 0.1"/>
       </geometry>
       <material name="blue"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0.05715"/>
+      <origin rpy="0 0 0" xyz="0 0 0.05"/>
       <geometry>
-        <box size="0.0285 0.035 0.1143"/>
+        <box size="0.0285 0.035 0.1"/>
       </geometry>
     </collision>
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0.05715"/>
+      <origin rpy="0 0 0" xyz="0 0 0.05"/>
       <mass value="1.0"/>
-      <inertia ixx="0.0011907908333333333" ixy="0.0" ixz="0.0" iyy="0.001156395" iyz="0.0" izz="0.00016977083333333332"/>
+      <inertia ixx="0.0009354166666666669" ixy="0.0" ixz="0.0" iyy="0.0009010208333333335" iyz="0.0" izz="0.00016977083333333332"/>
+    </inertial>
+  </link>
+  <link name="link_6">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.025"/>
+      <geometry>
+        <box size="0.0285 0.035 0.05"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.025"/>
+      <geometry>
+        <box size="0.0285 0.035 0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0.025"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.00031041666666666674" ixy="0.0" ixz="0.0" iyy="0.00027602083333333336" iyz="0.0" izz="0.00016977083333333332"/>
     </inertial>
   </link>
   <!-- Joints -->
-  <!-- <joint name="base_joint" type="fixed">
+  <joint name="base_joint" type="fixed">
     <parent link="world"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <child link="manipulator_base_link"/>
     <axis xyz="0 0 1"/>
-  </joint> -->
+  </joint>
   <joint name="joint_1" type="revolute">
     <parent link="manipulator_base_link"/>
     <child link="link_1"/>
@@ -162,7 +182,7 @@
     <child link="link_2"/>
     <origin rpy="0 3.141592653589793 0" xyz="0 0 0.03"/>
     <axis xyz="0 -1 0"/>
-    <limit effort="1000.0" lower="1.57" upper="3.141592653589793" velocity="2.5"/>
+    <limit effort="1000.0" lower="0.0" upper="3.141592653589793" velocity="2.5"/>
   </joint>
   <joint name="joint_3" type="revolute">
     <parent link="link_2"/>
@@ -185,6 +205,13 @@
     <axis xyz="0 0 1"/>
     <limit effort="1000.0" lower="0.0" upper="3.141592653589793" velocity="2.5"/>
   </joint>
+  <joint name="joint_6" type="revolute">
+    <parent link="link_5"/>
+    <child link="link_6"/>
+    <origin rpy="0 0 0" xyz="0 0 0.1"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="0.0" upper="3.141592653589793" velocity="2.5"/>
+  </joint>
   <ros2_control name="manipulator_ros2control" type="system">
     <hardware>
       <plugin>guardian/Pca9685SystemHardware</plugin>
@@ -196,6 +223,7 @@
       <param name="joint_3__channel">12</param>
       <param name="joint_4__channel">5</param>
       <param name="joint_5__channel">7</param>
+      <param name="joint_6__channel">14</param>
       <param name="joint_1__init_position">0.0</param>
       <param name="joint_2__init_position">3.1</param>
       <param name="joint_3__init_position">0.0</param>
@@ -213,7 +241,7 @@
     </joint>
     <joint name="joint_2">
       <command_interface name="position">
-        <param name="min">1.57</param>
+        <param name="min">0.0</param>
         <param name="max">3.141592653589793</param>
       </command_interface>
       <state_interface name="position">
@@ -246,6 +274,10 @@
       <state_interface name="position">
         <param name="initial_value">0.0</param>
       </state_interface>
+    </joint>
+    <joint name="joint_6">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
     </joint>
   </ros2_control>
 </robot>

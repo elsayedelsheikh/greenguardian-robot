@@ -13,6 +13,8 @@ world
                                     └── link_4
                                         └── joint_5
                                             └── link_5
+                                                └── joint_6
+                                                    └── link_6
 Joint Info:
 {'base_joint': {'axis': array([0., 0., 1.]),
                 'child': 'manipulator_base_link',
@@ -49,7 +51,13 @@ Joint Info:
              'dh': array([0., 0., 0., 0.]),
              'parent': 'link_4',
              'rpy': array([0., 0., 0.]),
-             'xyz': array([0.    , 0.    , 0.0635])}}
+             'xyz': array([0.    , 0.    , 0.0635])},
+ 'joint_6': {'axis': array([0., 0., 1.]),
+             'child': 'link_6',
+             'dh': array([0., 0., 0., 0.]),
+             'parent': 'link_5',
+             'rpy': array([0., 0., 0.]),
+             'xyz': array([0. , 0. , 0.1])}}
 Calculate world tfs:
 
 get tf from  world  to  manipulator_base_link
@@ -63,9 +71,11 @@ get tf from  link_2  to  link_3
 get tf from  link_3  to  link_4
 
 get tf from  link_4  to  link_5
+
+get tf from  link_5  to  link_6
 calculate_dh_params
 process_order = 
- ['world', 'base_joint', 'manipulator_base_link', 'joint_1', 'link_1', 'joint_2', 'link_2', 'joint_3', 'link_3', 'joint_4', 'link_4', 'joint_5', 'link_5']
+ ['world', 'base_joint', 'manipulator_base_link', 'joint_1', 'link_1', 'joint_2', 'link_2', 'joint_3', 'link_3', 'joint_4', 'link_4', 'joint_5', 'link_5', 'joint_6', 'link_6']
 
 
 process dh params for  manipulator_base_link
@@ -113,6 +123,12 @@ process dh params for  link_5
 1.5707963267948966
 [7.70371978e-34 1.57079633e+00 0.00000000e+00 1.57079633e+00]
 
+
+process dh params for  link_6
+[ 1.9003140e-17 -1.2246468e-16  1.0000000e+00]
+  Process collinear case.
+[0.1635 0.     0.     0.    ]
+
 DH Parameters: (csv)
 ,joint,parent,child,d,theta,r,alpha
 0,base_joint,world,manipulator_base_link,0.0,0.0,0.0,0.0
@@ -121,6 +137,7 @@ DH Parameters: (csv)
 3,joint_3,link_2,link_3,-0.0,-90.0002104591497,0.127,0.0
 4,joint_4,link_3,link_4,-0.0,0.0,0.18415,0.0
 5,joint_5,link_4,link_5,0.0,90.0002104591497,0.0,90.0002104591497
+6,joint_6,link_5,link_6,0.1635,0.0,0.0,0.0
 
 
 DH Parameters: (markdown)
@@ -132,3 +149,5 @@ DH Parameters: (markdown)
 |  3 | joint_3    | link_2                | link_3                | -0      | -90.0002 | 0.127   |  0      |
 |  4 | joint_4    | link_3                | link_4                | -0      |   0      | 0.18415 |  0      |
 |  5 | joint_5    | link_4                | link_5                |  0      |  90.0002 | 0       | 90.0002 |
+|  6 | joint_6    | link_5                | link_6                |  0.1635 |   0      | 0       |  0      |
+[ros2run]: Process exited with failure 1
