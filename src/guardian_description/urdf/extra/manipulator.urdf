@@ -212,7 +212,7 @@
     <axis xyz="0 0 1"/>
     <limit effort="1000.0" lower="0.0" upper="3.141592653589793" velocity="2.5"/>
   </joint>
-  <ros2_control name="manipulator_ros2control" type="system">
+  <!-- <ros2_control name="manipulator_ros2control" type="system">
     <hardware>
       <plugin>guardian/Pca9685SystemHardware</plugin>
       <param name="pca_frequency">50.0</param>
@@ -279,5 +279,5 @@
       <command_interface name="position"/>
       <state_interface name="position"/>
     </joint>
-  </ros2_control>
+  </ros2_control> -->
 </robot>
