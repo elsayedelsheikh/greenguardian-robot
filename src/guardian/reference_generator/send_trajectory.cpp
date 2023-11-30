@@ -26,7 +26,7 @@ int main(int argc, char ** argv)
   rclcpp::init(argc, argv);
   auto node = std::make_shared<rclcpp::Node>("send_trajectory");
   auto pub = node->create_publisher<trajectory_msgs::msg::JointTrajectory>(
-    "/joint_trajectory_controller/joint_trajectory", 10);
+    "/manipulator_controller/joint_trajectory", 10);
 
   // get robot description
   auto robot_param = rclcpp::Parameter();
@@ -38,20 +38,12 @@ int main(int argc, char ** argv)
   KDL::Tree robot_tree;
   KDL::Chain chain;
   kdl_parser::treeFromString(robot_description, robot_tree);
-  robot_tree.getChain("manipulator_base_link", "tool0", chain);
-
-  // Debug: print chain
-  for (size_t i = 0; i < chain.getNrOfSegments(); i++)
-  {
-    auto segment = chain.getSegment(i);
-    auto joint = segment.getJoint();
-    std::cout << "Segment " << i << ": " << segment.getName() << std::endl;
-    std::cout << "Joint " << i << ": " << joint.getName() << std::endl;
-  }
+  robot_tree.getChain("manipulator_base_link", "link_6", chain);
 
   auto joint_positions = KDL::JntArray(chain.getNrOfJoints());
   auto joint_velocities = KDL::JntArray(chain.getNrOfJoints());
   auto twist = KDL::Twist();
+  
   // create KDL solvers
   auto ik_vel_solver_ = std::make_shared<KDL::ChainIkSolverVel_pinv>(chain, 0.0000001);
 
@@ -105,10 +97,9 @@ int main(int argc, char ** argv)
     trajectory_msg.points.push_back(trajectory_point_msg);
   }
 
+  // publish trajectory
+  RCLCPP_INFO(node->get_logger(), "Publishing trajectory");
   pub->publish(trajectory_msg);
-  while (rclcpp::ok())
-  {
-  }
 
   return 0;
 }
