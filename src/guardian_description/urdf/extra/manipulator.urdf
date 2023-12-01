@@ -175,42 +175,42 @@
     <child link="link_1"/>
     <origin rpy="0 0 0" xyz="0 0 0.0793"/>
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="0.0" upper="3.141592653589793" velocity="2.5"/>
+    <limit effort="1000.0" lower="0.0" upper="6.0" velocity="2.5"/>
   </joint>
   <joint name="joint_2" type="revolute">
     <parent link="link_1"/>
     <child link="link_2"/>
     <origin rpy="0 3.141592653589793 0" xyz="0 0 0.03"/>
     <axis xyz="0 -1 0"/>
-    <limit effort="1000.0" lower="0.0" upper="3.141592653589793" velocity="2.5"/>
+    <limit effort="1000.0" lower="0.0" upper="6.0" velocity="2.5"/>
   </joint>
   <joint name="joint_3" type="revolute">
     <parent link="link_2"/>
     <child link="link_3"/>
     <origin rpy="0 0 0" xyz="0 0 0.127"/>
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="0.0" upper="3.141592653589793" velocity="2.5"/>
+    <limit effort="1000.0" lower="0.0" upper="6.0" velocity="2.5"/>
   </joint>
   <joint name="joint_4" type="revolute">
     <parent link="link_3"/>
     <child link="link_4"/>
     <origin rpy="0 0 0" xyz="0 0 0.18415"/>
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="0.0" upper="3.141592653589793" velocity="2.5"/>
+    <limit effort="1000.0" lower="0.0" upper="6.0" velocity="2.5"/>
   </joint>
   <joint name="joint_5" type="revolute">
     <parent link="link_4"/>
     <child link="link_5"/>
     <origin rpy="0 0 0" xyz="0 0 0.0635"/>
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="0.0" upper="3.141592653589793" velocity="2.5"/>
+    <limit effort="1000.0" lower="0.0" upper="6.0" velocity="2.5"/>
   </joint>
   <joint name="joint_6" type="revolute">
     <parent link="link_5"/>
     <child link="link_6"/>
     <origin rpy="0 0 0" xyz="0 0 0.1"/>
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="0.0" upper="3.141592653589793" velocity="2.5"/>
+    <limit effort="1000.0" lower="0.0" upper="6.0" velocity="2.5"/>
   </joint>
   <!-- <ros2_control name="manipulator_ros2control" type="system">
     <hardware>

@@ -22,6 +22,7 @@ services:
       # - /mnt/wslg:/mnt/wslg ## WSL
       - ../src/guardian_description:/root/ws/src/guardian_description
       - ../src/guardian_moveit_config:/root/ws/src/guardian_moveit_config
+      - ../src/guardian_moveit:/root/ws/src/guardian_moveit
       # - ../src/ThirdParty:/root/ws/src/ThirdParty
       ## Examples
       # - ../src/ThirdParty/ros2_control_demos/example_7:/root/ws/src/example_7
